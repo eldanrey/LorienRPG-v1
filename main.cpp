@@ -11,7 +11,7 @@ Legend:
 		userData[4]=User Max Health(based on level)
 		userData[5]=User Max XP(based on level)
 		userData[6]=Coins
-	
+
 	Mogs:
 		Health=10*1.2*Level
 		Attack=5*0.8*level
@@ -31,7 +31,7 @@ ifstream inFile;
 fstream inOutFile;
 void first_screen_logo(){
 cout<<"					         .';::c:::;'..              \n";
-cout<<"					        .,ldkO00KXXNWWWNX0xl;.      \n";    
+cout<<"					        .,ldkO00KXXNWWWNX0xl;.      \n";
 cout<<"					      'cddl:,,,,,,,;;:lx0NMMWKx;.       \n";
 cout<<"					    'cc,..;lxO0KKK0kxdc,.,o0WMMWO:.     \n";
 cout<<"					  .,;..,dKWMMMWNKOxddddoc'..c0WMMNx'    \n";
@@ -53,9 +53,9 @@ cout<<"					           ..',,,,'.    \n";
 }
 class Enemy{
 	public:
-	
+
 	void huntMogs(int userData[],int choice){
-		
+
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::default_random_engine generator (seed);
   std::uniform_int_distribution<int> mogLevel1to10(1,10);
@@ -75,7 +75,7 @@ class Enemy{
 	userData[0]-=(mogHealth/userData[1])*mogAttack;
 	userData[3]+=mogXP;
 	userData[6]+=10*(0.4*mogLevel);
-	
+
 }
 };
 class User{
@@ -106,7 +106,7 @@ int loricShop(int userData[]){
 	else if(choice=="2"){
 		return 1;
 	}
-	
+
 }
 int closeProgram(string currUsername, int currUserData[]){
 	int userData[6];
@@ -137,8 +137,8 @@ int closeProgram(string currUsername, int currUserData[]){
 	inFile.close();
 	remove("data.dat");
 	rename("temp.dat","data.dat");
-	
-	
+
+
 }
 int loginSignupMenu();
 void IGdata(string username, int userData[]){
@@ -201,13 +201,13 @@ void game(string username, int userData[]){
 			else {
 				goto inventoryMenu;
 			}
-		
-		
+
+
 	}
 	else if(choice=="3"){
 		int willreturn=loricShop(userData);
 		if(willreturn==1)goto main_menu;
-		
+
 	}
 	else if(choice=="4"){
 		closeProgram(username,userData);
@@ -229,13 +229,13 @@ void login(){
 	if(username=="-1"){
 		system("cls");
 		loginSignupMenu();
-		
+
 	}
 	cout<<"\n\t\t\t\tPassword: ";
 	cin>>password;
-	
-	
-	
+
+
+
 	inFile.open("data.dat");
 	bool isPresent=false;
 	while(getline(inFile,s)){
@@ -248,22 +248,22 @@ void login(){
 			isPresent=true;
 			break;
 		}
-		
+
 	}
 	inFile.close();
 	if(isPresent){
 		game(username,userData);
 	}
-	
+
 	else {
 		cout<<"\n\n\t\t\tUsername or Password is Incorrect \n\n";
 		Sleep(3000);
 		system("cls");
 		goto loginMenu;
-		
+
 	}
-	
-	
+
+
 
 }
 void signup(){
@@ -274,13 +274,13 @@ void signup(){
 	if(username=="-1"){
 		system("cls");
 		loginSignupMenu();
-		
+
 	}
 	cout<<"\n\t\t\t\tPassword: ";
 	cin>>password;
 	cout<<"\n\t\t\t\tConfirm Password:";
 	cin>>confirmPassword;
-	
+
 	 if(password==confirmPassword){
 		inFile.open("data.dat");
 		bool present=false;
@@ -295,12 +295,12 @@ void signup(){
 		inFile.close();
 		if(present==true){
 			cout<<"\n\n\t\t\tTHIS USERNAME IS TAKEN, please do it again!\n\n";
-			
+
 			Sleep(3000);
 			system("cls");
 			goto signupMenu;
 		}
-		
+
 		else{
 			outFile.open("data.dat",ios::app);
 			outFile<<username<<" "<<password<<" 300 5 1 0 30 300 300\n";
@@ -314,7 +314,7 @@ void signup(){
 		goto signupMenu;
 	}
 	loginSignupMenu();
-	
+
 }
 int loginSignupMenu(){
 	menu:
@@ -343,7 +343,7 @@ int loginSignupMenu(){
 			goto menu;
 			break;
 		}
-	}   
+	}
 }
 
 int main(){
@@ -351,6 +351,6 @@ int main(){
 first_screen_logo();
   Sleep(3000);
   system("cls");
-  loginSignupMenu();             
-          
+  loginSignupMenu();
+
 }
